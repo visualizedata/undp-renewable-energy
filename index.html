@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parsons Data Visualization UNDP Partnership</title>
+
+  <link href="web/css/style.css" rel="stylesheet">
+  <link href="web/css/color.css" rel="stylesheet">
+  <link href="web/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <script>
+    // use preview images if available otherwise iframes directly
+    var usePreview = true;
+
+    $(document).ready(function() {
+
+      // images
+      $("div .project").each(function() {
+        if ($(this).attr('href') != undefined) {
+
+          // scale
+          var str = "";
+          str += "<a href='#top'><span class='pull-right glyphicon glyphicon-chevron-up' data-toggle='tooltip' data-placement='left' title='top'></span></a>";
+          $(this).append(str);
+
+          // create text field to copy from
+          var iframe = "<input id='embed' type='text' class='collapse pull-right btn btn-default col-md-12' value='" +
+            $(this).find("p").html() +
+            "<iframe width=\"100%\" height=\"100%\" src=\"" + window.location.href + "/." + $(this).attr('href') + "\"></iframe>" +
+            "<a href=\"https://visualizedata.github.io/undp/\"><img style=\"width:200px !important\" src=\"" + window.location.href + "/../" + "web/img/ParsonsDataVisualization.png" + "\"></a>" +
+            "'>";
+          if ($(this).find("input").length == 0) {
+            $(this).append(iframe);
+          }
+
+          // add preview image when available
+          if (usePreview) {
+            $(this).append("<img data-toggle='tooltip' data-placement='left' title='launch project' width=\"100%\" src='" + $(this).attr('img-src') + "' target='_blank' onClick='window.open(\"" + $(this).attr('href') + "\")'>");
+            $(this).find("img").error(function() {
+              $(this).parent().append("<iframe width='100%' height='100%' src='" + $(this).parent().attr('href') +
+                "' frameborder='0' allowfullscreen></iframe>");
+              $(this).parent().find("img").remove();
+              $(this).parent().find(".title").remove();
+            });
+
+          }
+          else {
+            $(this).append("<iframe width='100%' height='566' src='" + $(this).attr('href') + "'></iframe>");
+          }
+        }
+      });
+
+      // index
+      $("h3").each(function(i) {
+        if (!$(this).hasClass("no-touch")) {
+          $("#index").append("<li><a href='#" + i + "'>" +
+            "<span class='glyphicon glyphicon-chevron-down'></span>  &nbsp;" +
+            $(this).text() + "</a><li>");
+          $(this).prepend("<a id='" + i + "'>");
+         }
+        else {
+          $("#index").append("<li class='no-touch'><a href='#" + i + "'>" +
+            "<span class='glyphicon glyphicon-chevron-down'></span>  &nbsp;" +
+            $(this).text() + "</a><li>");
+          $(this).prepend("<a id='" + i + "'>");
+        }
+      });
+
+      // check for touch screens
+      var hasTouch = window.matchMedia('(pointer: coarse)').matches;
+      if (hasTouch) {
+        $(".no-touch").hide();
+      }
+
+      // activate tooltip
+      $('[data-toggle="tooltip"]').tooltip();
+
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container">
+
+    <!--MENU-->
+    <div id="banner">
+      <div id="menu_button_wrapper">
+        <a href="#" id="menu_button" class="right-off-canvas-toggle menu-icon"><i class="fa fa-bars"></i></a>
+        <a href="#" id="search_button" class="right-off-canvas-toggle menu-icon"><i class="fa fa-search"></i></a>
+      </div>
+
+      <div id="site_lockup">
+        <h1 class="u_name col-md-12">
+          <a href="http://newschool.edu/">
+              <span class="font-width-1">T</span><span class="font-width-2">h</span><span class="font-width-1">e</span><span class="font-width-1">&nbsp;</span><span class="font-width-2">N</span><span class="font-width-1">e</span><span class="font-width-3">w</span><span class="font-width-1">&nbsp;</span><span class="font-width-1">S</span><span class="font-width-1">c</span><span class="font-width-2">h</span><span class="font-width-2">o</span><span class="font-width-2">o</span><span class="font-width-3">l</span>
+          </a>
+        </h1>
+        <div class="bottom-stripe col-md-12">
+          <div class="bottom-stripe-inner"></div>
+        </div>
+
+        <div id="stripe_menu" class="col-md-12">
+          <div id="inner-menu-stripe" class="bottom-stripe">
+            <div class="bottom-stripe-inner"></div>
+          </div>
+          <h1 class="sitename"><span class="font-width-3 kern-decrease-10"><a href="http://www.newschool.edu/parsons/ms-data-visualization/">Data Visualization</a></span></h1>
+        </div>
+        <div class="subtitle font-width-3 kern-decrease-10 col-md-10">
+          UNDP RBA Renewable Energy Project Partnership
+        </div>
+
+      </div>
+    </div>
+
+
+    <h2 class="col-md-10 col-md-offset-1">
+      Partnering with the <a href="http://www.africa.undp.org/">United Nations Development Programme Regional Bureau for Africa</a>, Parsons Data Visualization students investigate renewable energy in Sub-Saharan Africa.
+    </h2>
+
+    <!--YEAR-->
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+    <div class="font-width-3 col-md-12">
+      2017
+    </div>
+
+    <!--INDEX-->
+    <div class="col-md-12 col-md-10 col-md-offset-1">
+      <ul id="index">
+        <!--dynamically generated-->
+      </ul>
+      <br />
+    </div>
+
+    <!--GROUP-->
+
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+    <h4 class="col-md-12">Renewable Energy</h4>
+
+    <!--PROJECT-->
+
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+    <h3 class="col-md-12">__</h3>
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+
+    <a id="__01"></a>
+    <div href="https://julianhlange.github.io/major-studio-1/assignments/tools/index.html" img-src="https://github.com/julianhlange/major-studio-1/raw/master/assignments/tools/preview.png" class="project col-md-12">
+      <p class=" col-md-3">
+        <span class="title">__</span>
+      </p>
+      <p class="col-md-9">
+        __
+      </p>
+    </div>
+
+
+    <!--PROJECT-->
+
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+    <h3 class="col-md-12">__</h3>
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+
+    <a id="__01"></a>
+    <div href="https://julianhlange.github.io/major-studio-1/assignments/tools/index.html" img-src="https://github.com/julianhlange/major-studio-1/raw/master/assignments/tools/preview.png" class="project col-md-12">
+      <p class=" col-md-3">
+        <span class="title">__</span>
+      </p>
+      <p class="col-md-9">
+        __
+      </p>
+    </div>
+
+
+    <!--GROUP-->
+
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+    <h4 class="col-md-12">EDUCATION</h4>
+
+    <!--PROJECT-->
+
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+    <h3 class="col-md-12">Yicen Shi</h3>
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+
+    <a id="yicen"></a>
+    <div href="https://shiy918.github.io/ms-1/FinalUNDP/primary.html" img-src="https://github.com/shiy918/ms-1/raw/master/FinalUNDP/UNDP.png" class="project col-md-12">
+      <p class=" col-md-3">
+        <span class="title">A Comparison of Enrollment Rates in Primary, Secondary and Tertiary Education across SSA Countries</span>
+      </p>
+      <p class="col-md-9">
+          Education is one of the major concerns that induce inequality in Sub-Saharan Africa. With the improvements in primary education, education enrollment in general is still having a lot of issues. This visualizaion aims to provide a broad perspective for investigating enrollment situations across different regions in SSA, as well as specific changes in the past few years within each country.        <details>
+          <summary>Read more...</summary>
+          Gender inequality is a major concern in education. I am bringing an extra perspective to compare the differences in enrollment rates of each gender.        </details>
+      </p>
+    </div>
+
+
+    <!--PROJECT-->
+
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+    <h3 class="col-md-12">Steve Hubbard</h3>
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+
+    <a id="steve"></a>
+    <div href="https://hubideal.github.io/educationAfrica/index.html" img-src="https://github.com/hubideal/major_student_one/raw/master/Assignment4/GenderEdDif.jpg?raw=true" class="project col-md-12">
+      <p class=" col-md-3">
+        <span class="title">Gender Differences in Expected & Mean Years of Schooling in Sub-Saharan Africa</span>
+      </p>
+      <p class="col-md-9">
+        This project explores the differences between the expected years of schooling and the mean years of schooling based on gender from the 2013 United Nations Development Programme (UNDP) Education Report.
+        <details>
+          <summary>Read more...</summary>
+          Africa has seen an increase in the number of school children gaining access to school. However, there still seems to be a gap in education outcomes based on gender differences. This data visualization project explores these differences. From the "Income Inequality Trends in Sub-Saharan Africa" report, we know that Sub-Saharan Africa has experienced advancement in human development. However, the report also highlighted gender inequality and differences in human development. Since education is a factor in both calculating the Human Development Index, this data visualization project explores those differences by looking at differences in “expected years of schooling” and “mean years of schooling” by both male and female identified individuals. Expected years of schooling is defined as “number of years of schooling that a child of school entrance age can expect to receive if prevailing patterns of age-specific enrolment rates persist throughout the child’s life” (Unesco). Mean years of schooling is calculated by averaging the number of years of school accomplished by individuals 25 years or over.        </details>
+      </p>
+    </div>
+
+
+    <!--PROJECT-->
+
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+    <h3 class="col-md-12">Joe Steele</h3>
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+
+    <a id="joe"></a>
+    <div href="https://jsteele2003.github.io/major-studio-1/assignments/ass1/time.html" img-src="https://github.com/jsteele2003/major-studio-1/raw/master/assignments/ass1/data/Screen%20Shot%202017-12-05%20at%2012.04.42.png" class="project col-md-12">
+      <p class=" col-md-3">
+        <span class="title">Animated Time-Series and Choropleths for Worldwide Education Enrolment and Income Inequality</span>
+      </p>
+      <p class="col-md-9">
+        Education quality, as a determining factor on social mobility/income inequality, tends to make itself known across long-term perspectives. With this as a guiding insight, this interactive visualisation tool is oriented towards macro-level, broad insights on the ways that educational access relate to and interact with income and social equality, on a country-by-country basis.
+        <details>
+          <summary>Read more...</summary>
+          Each map tracks a single metric across a time interval from 1970-2015- the Gini Income Inequality Coefficient, and two Net Enrolment Ratios(NER) for both Primary and Secondary Education. The year of each metric can be selected via the top slider, with tooltips displaying the specific data for each country.
+        </details>
+      </p>
+    </div>
+
+    <!--FOOTER-->
+
+    <div class="bottom-stripe col-md-12">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+
+    <div id="about">
+      <div class="row col-sm-offset-0">
+
+        <div class="hidden-xs hidden-sm col-md-1 text-right">
+            <p>&nbsp;</p>
+            <a href="https://github.com/visualizedata/undp-renewable-energy"><img data-toggle='tooltip' title='Source' src="web/img/GitHub.png" style="width:30px"></a>
+        </div>
+
+        <div class="col-md-3">
+
+          <br />
+          <p><a href="http://www.newschool.edu/parsons/ms-data-visualization/">MS Data Visualization</a></p>
+
+          <a href="https://github.com/__">__</a>
+          <br /> <a href="https://github.com/__">__</a>
+          <p></p>
+
+        </div>
+        <div class="col-md-3">
+
+          <br />
+          <p><a href="http://www.newschool.edu/parsons/">Parsons School of Design</a></p>
+
+                <a href="http://www.newschool.edu/parsons/ms-data-visualization/">MS Data Visualization</a>
+          <br /><a href="http://www.newschool.edu/parsons/art-media-technology-school-amt/">Art, Media, and Technology</a>
+          <br /><a href="https://courses.newschool.edu/courses/PGDV5200">PGDV Major Studio 1</a> Fall 2018
+          <br /><a href="http://www.newschool.edu/parsons/faculty.aspx?id=4e54-5978-4d7a-4932">Daniel Sauter, Assoc. Prof.</a>
+          <p></p>
+
+        </div>
+        <div class="col-md-2">
+
+          <br />
+          <p><a href="http://www.africa.undp.org/content/rba/en/home/presscenter/articles/2016/11/21/parsons-school-of-design-partners-with-undp-africa-/">UNDP RBA</a></p>
+
+          Ayodele Odusola
+          <br /> Angela Lusigi
+          <br /> Eunice Kamwendo
+          <br /> Lamine Bal
+          <br /> James Neuhaus
+
+        </div>
+        <div class="col-md-3">
+
+          <a href="http://www.africa.undp.org/content/rba/en/home/presscenter/articles/2016/11/21/parsons-school-of-design-partners-with-undp-africa-/"><img class='hidden-sm hidden-xs' src='web/img/UNDP.png' width='100'></a>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="bottom-stripe col-md-12 marginbot-50">
+      <div class="bottom-stripe-inner"></div>
+    </div>
+
+  </div>
+  <script src="web/js/bootstrap.min.js"></script>
+  <script src="web/js/jquery.easing.min.js"></script>
+  <script src="web/js/custom.js"></script>
+</body>
+
+</html>
