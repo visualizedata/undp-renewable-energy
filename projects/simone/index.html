@@ -1,0 +1,773 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Major Studio Final Assignment</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400|PT+Serif|Playfair+Display|Raleway"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100|Playfair+Display"
+      rel="stylesheet"
+    />
+
+		<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Average" rel="stylesheet">
+
+    <style type="text/css">
+      body {
+        background-color: #333132;
+        color: #fff;
+        font-family: 'Average', serif;
+				font-size: 1.1em;
+      }
+
+      h2 {
+				text-align: center;
+				font-weight: normal;
+				font-family: 'Fjalla One', sans-serif;
+				line-height: 1.4;
+				color: #ddd;
+				padding-left: 2em;
+				padding-right: 2em;
+				font-size: 1.7em;
+			}
+
+
+      h3,
+      h5 {
+        text-align: center;
+				font-weight: normal;
+				line-height: 1.4;
+        color: #ddd;
+				padding-left: 2em;
+				padding-right: 2em;
+      }
+
+			h3 {
+				color: #ffe17f;
+				font-family: 'Fjalla One', sans-serif;
+				font-size: 1.4em;
+				line-height: 1.39;
+			}
+
+      text {
+        fill: black;
+      }
+
+      a {
+        color: #FFAE90;
+      }
+
+      h5 {
+        color: #ffe17f;
+        font-family: "IBM Plex Sans";
+      }
+
+      b {
+        background-color: #ffe17f;
+				font-weight: normal;
+        color: black;
+
+      }
+
+			p{
+				color: #eee;
+			}
+
+      .container {
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 50px;
+				padding-bottom: 0;
+      }
+
+			.containerLandingMessage {
+				border-width: 2px;
+				border-color: "FF6B35";
+				max-width: 1000px;
+				margin-left: auto;
+				margin-right: auto;
+				padding: 50px;
+				padding-bottom: 0;
+				text-align: center;
+			}
+
+      .chart-loading {
+        background-color: #3d3b3d;
+        border-radius: 6px;
+        transition: all 0.5s ease;
+      }
+      .chart-loaded {
+        background-color: none;
+        border-radius: 0px;
+        transition: all 0.5s ease;
+      }
+			.iconHolder{
+				display: flex;
+				justify-content: space-around;
+				max-width: 500px;
+				margin: 0 auto;
+				text-align: center;
+			}
+
+			.icons {
+				width: 19%;
+				/* float: left; */
+				padding: 1%;
+				max-width: 50px;
+				text-align: center;
+			}
+
+			#sources {
+				font-size: .7em;
+				margin-top: 50px;
+			}
+
+			#sources p {
+				color: #FFFFFF;
+				opacity: 0.75;
+			}
+
+      /* Hide amCharts watermark */
+      #mapdiv a,
+      #barChartDiv a,
+      #lineGraphDiv a {
+        display: none !important;
+      }
+
+
+      #mapdiv {
+        width: 100%;
+        height: 700px;
+        font-size: 11px;
+        display: inline-block;
+      }
+
+      #barChartDiv {
+        width: 100%;
+        height: 500px;
+        font-size: 11px;
+        font-family: "IBM Plex Sans", sans-serif;
+        display: inline-block;
+      }
+      #barChartDiv text,
+      #lineGraphDiv text {
+        font-family: "IBM Plex Sans", sans-serif;
+      }
+
+			#lineGraphDiv .amcharts-category-axis text,#lineGraphDiv .amcharts-value-axis text {
+				fill:#fff;
+			}
+
+
+			#lineGraphDiv text {
+        fill:#000;
+      }
+
+
+
+
+			#barChartDiv text{
+				fill: #fff;
+			}
+
+      #lineGraphDiv {
+        width: 100%;
+        height: 500px;
+        font-size: 11px;
+        font-family: "IBM Plex Sans", sans-serif;
+      }
+
+      #barChartDiv path {
+        /*
+				SAMPLE:
+					fill: #fff;
+					stroke: #000;
+				*/
+      }
+
+      #mapdiv #amcharts_pie_0,
+      #mapdiv #amcharts_pie_1,
+      #mapdiv #amcharts_pie_2,
+      #mapdiv #amcharts_pie_3,
+      #mapdiv #amcharts_pie_4,
+      #mapdiv #amcharts_pie_5,
+      #mapdiv #amcharts_pie_6,
+      #mapdiv #amcharts_pie_7,
+      #mapdiv #amcharts_pie_8,
+      #mapdiv #amcharts_pie_9,
+      #mapdiv #amcharts_pie_10 {
+        overflow: visible !important;
+      }
+      #mapdiv .amcharts-main-div {
+        overflow: visible !important;
+      }
+      #mapdiv .amcharts-chart-div {
+        overflow: visible !important;
+      }
+      #mapdiv .amcharts-chart-div .amcharts-balloon-div {
+        overflow: visible !important;
+      }
+
+      /* Custom balloon apperance */
+      .amcharts-balloon-div div {
+        font-family: "IBM Plex Sans", sans-serif !important;
+        color: #000 !important;
+        background: #ffffff !important;
+        padding: 0 !important;
+        outline: solid 3px #ffffff !important;
+      }
+    </style>
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+    <script src="https://www.amcharts.com/lib/3/ammap_amcharts_extension.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://www.amcharts.com/lib/3/plugins/export/export.css"
+      type="text/css"
+      media="all"
+    />
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://www.amcharts.com/lib/3/plugins/export/export.css"
+      type="text/css"
+      media="all"
+    />
+    <script src="https://www.amcharts.com/lib/3/themes/black.js"></script>
+    <script src="https://unpkg.com/intersection-observer@0.5.0/intersection-observer.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>
+        Would <b>dependable energy</b> in healthcare facilities
+        <b>reduce maternal death rates</b> in sub-Saharan Africa?
+      </h2>
+      <h5>By Simone Betito</h5>
+    </div>
+
+    <div class="container">
+
+        <p>
+          Through the lens of <a href="https://sustainabledevelopment.un.org/sdg5" target="_blank">SDG-5</a>, this visualization
+          examines the significance of dependable energy in healthcare facilities
+          and its role in reproductive care in sub-Saharan Africa. It also
+          explores the direct correlation between maternal mortality rates and a
+          lack of electricity in healthcare facilities in that region.
+        </p>
+        <p>
+          Without dependable energy in healthcare facilities, women experience a
+          range of complications including but not limited to; giving birth in
+          the dark without access to facilities with electricity and lifesaving devices requiring energy.
+        </p>
+        <p>
+          Initiatives that focus on investing in dependable energy in this area
+          will have a direct impact on saving women's lives.
+        </p>
+
+    </div>
+
+    <div class="container">
+      <h3>
+        In sub-Saharan Africa, <b>1 in 36 women will die from Maternal Conditions.</b>
+      </h3>
+      <p>
+        The chart below visualizes the discrepancy between Maternal Mortality in
+        sub-Saharan Africa and the world. 201,000 women in that region
+        died from complications relating to giving birth in 2015.
+      </p>
+
+      <div id="barChartDiv" class="chart-loading"></div>
+    </div>
+
+    <div class="container">
+      <h3>
+        Here's the <b>energy breakdown</b> of healthcare facilities in 11 sub-Saharan
+        countries
+      </h3>
+        <p>
+          The map below looks at 11 Sub-Saharan countries (Ethiopia, The Gambia,
+          Ghana, Kenya, Namibia, Nigeria, Rwanda, Sierra Leone, Tanzania,
+          Uganda, Zambia) and how their health facilities are powered, either by
+          generator only, central, solar, another supply, or no electricity at
+          all.
+        </p>
+        <p>
+          <u>In 10 out of the 11 countries</u> examined, there is still a portion of
+          healthcare facilities that are operating without electricity.
+        </p>
+				<p>
+				Use your mouse to hover over the countries below:
+				</p>
+
+      <div id="mapdiv" class="chart-loading"></div>
+    </div>
+
+    <div class="container">
+      <h3>
+        There is a <b>strong correlation</b> between a lack of energy in healthcare
+        facilities and expecting mothers dying
+      </h3>
+  		<p>
+        This chart compares the percentage of healthcare facilities without
+        electricity and the percentage of maternal deaths per women in
+        childbearing years in a specific country. As the percentage of
+        healthcare facilities without electricity peaks, so does an increase in
+        deaths. A pattern is observable.
+      </p>
+      <div id="lineGraphDiv" class="chart-loading"></div>
+    </div>
+
+    <div class="container">
+      <h3>How You Can Help</h3>
+        <p>
+          Financial investment for the electrification of health centers in sub-Saharan Africa will mean life saving vaccines and maternal care for women. In addition to the electrification of the facility itself, the UN lists a number of devices essential in reproductive healthcare requiring electricity.
+					See a few of the devices needed below and the full list <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4168575/" target="_blank">here</a>.
+
+				</p>
+
+			<div class="iconHolder">
+			<div class="icons"> <img src = "icons/breastPump.svg"/> Breast Pumps</div>
+			<div class="icons"><img src = "icons/ecgMachine.svg"/> Patient Monitors</div>
+			<div class="icons"><img src = "icons/nounInfantIncubator.svg"/>Newborn incubators</div>
+			<div class="icons"><img src = "icons/vaccineStorage.svg"/>Medical Refrigeration</div>
+		</div>
+
+    </div>
+
+		<div class ="containerLandingMessage">
+			<h3><b> To help the UNDP's efforts in promoting access to reliable energy in healthcare facilities in sub-Saharan Africa, donate</b> <a href="https://give.undp.org/campaign/undp-giving/c120717" target="_blank"> here</a>.</h3>
+
+		</div>
+
+
+    <div class="container " id="sources">
+      <hr/>
+      <h3>Sources</h3>
+        <p>
+          ADAIR-ROHANI, H., ZUKOR, K., BONJOUR, S., WILBURN, S., KUESEL, A. C.,
+          HEBERT, R. AND FLETCHER, E. R. Limited electricity access in health
+          facilities of sub-Saharan Africa: a systematic review of data on
+          electricity access, sources, and reliability
+          <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4168575/">Available Here</a>
+        </p>
+        <p>
+          The Lancet. "Table: Number of public hospitals and access quotients with UI across 48 sub-Saharan African countries and islands, including Zanzibar for 2015"
+          <a
+            href="https://www.thelancet.com/action/showFullTableHTML?isHtml=true&tableId=tbl1&pii=S2214-109X%2817%2930488-6"
+            >Available Here</a
+          >
+        </p>
+        <p>
+          UNICEF Data. "Maternal Mortality." (2017, February)
+          <a
+            href="https://data.unicef.org/topic/maternal-health/maternal-mortality/"
+            >Available Here</a
+          >
+        </p>
+        <p>
+          United Nations Population Fund."End Maternal Death"
+          <a
+            href="https://www.unfpa.org/data/transformative-results#end-maternal"
+      			>Available Here</a>
+        </p>
+    </div>
+
+    <br />
+    <br />
+
+    <script type="text/javascript">
+      // Create the map - load the data from external resource
+      AmCharts.loadFile(
+        "https://gavamedia.com/TEMP/assignment_3_data.json?new",
+        {},
+        function(response) {
+          // Convert the data string to an object
+          let data = JSON.parse(response);
+
+          // build chart when in window
+          const mapChart = document.getElementById("mapdiv");
+          var isBuilt = false;
+          function makeMapChart() {
+            let showChart =
+              window.scrollY + window.innerHeight - mapChart.clientHeight;
+            let isShown = showChart > mapChart.offsetTop;
+            if (isShown && !isBuilt) {
+              createMapChart();
+              isBuilt = true;
+              mapChart.classList.remove("chart-loading");
+              mapChart.classList.add("chart-loaded");
+            }
+          }
+          window.addEventListener("scroll", makeMapChart);
+          // Create the map
+          function createMapChart() {
+            var map = AmCharts.makeChart("mapdiv", {
+              type: "map",
+              theme: "light",
+              projection: "winkel3",
+
+							"areasSettings": {
+								"color": "#333333",
+								"rollOverColor": "#ffe17f",
+								"unlistedAreasAlpha": 0
+							},
+
+
+              // Load the data object
+              dataProvider: data,
+
+              legend: {
+                marginRight: 27,
+                marginLeft: 27,
+                equalWidths: false,
+                backgroundAlpha: 0.5,
+                backgroundColor: "#FFFFFF",
+                borderColor: "#ffffff",
+                borderAlpha: 1,
+                top: 650,
+                left: 0,
+                horizontalGap: 10,
+                data: [
+                  {
+                    title: "No Electricity (%)",
+                    color: "#FF6B35"
+                  },
+                  {
+                    title: "Generator Only (%)",
+                    color: "#fff1ca"
+                  },
+                  {
+                    title: "Central, Solar or Other Supply (%)",
+                    color: "#ffe180"
+                  },
+                  {
+                    title: "No Data",
+                    color: "#e8e3db"
+                  }
+                ]
+              },
+
+              // Event executed when map is zoomed/moved/loaded
+              listeners: [
+                {
+                  event: "positionChanged",
+                  method: updateCustomMarkers
+                }
+              ]
+            });
+          }
+        }
+      );
+
+      // Create the bar graph chart - load the data from external resource
+      AmCharts.loadFile("https://gavamedia.com/TEMP/barChart.csv", {}, function(
+        response
+      ) {
+        // Parse CSV
+        var data = AmCharts.parseCSV(response, { useColumnNames: true });
+
+        // build chart when in window
+        const barChart = document.getElementById("barChartDiv");
+        var isBuilt = false;
+        function makeBarChart() {
+          let showChart =
+            window.scrollY + window.innerHeight - barChart.clientHeight;
+          let isShown = showChart > barChart.offsetTop;
+          if (isShown && !isBuilt) {
+            createBarChart();
+            isBuilt = true;
+            barChart.classList.remove("chart-loading");
+            barChart.classList.add("chart-loaded");
+          }
+        }
+        window.addEventListener("scroll", makeBarChart);
+
+        function createBarChart() {
+          var chart = AmCharts.makeChart("barChartDiv", {
+            type: "serial",
+            theme: "black",
+            // // "titles": [{
+            // // 	"text": "In Sub-Saharan Africa, 1 in 36 women will die from Maternal Conditions",
+            // // 	"size": 15
+            // }],
+            dataProvider: data,
+            valueAxes: [
+              {
+                gridColor: "#FFFFFF",
+                color: "#FFE17F",
+                gridAlpha: 0.2,
+                dashLength: 0
+              }
+            ],
+            gridAboveGraphs: true,
+            startDuration: 1,
+            graphs: [
+              {
+                balloonText: "[[category]]: <b>[[value]]</b>",
+                fillColors: "#FFE17F",
+                fillAlphas: 0.8,
+                lineAlpha: 0.2,
+                type: "column",
+                valueField: "Number of Maternal Deaths (2015)"
+              }
+            ],
+            chartCursor: {
+              categoryBalloonEnabled: false,
+              cursorAlpha: 0,
+              zoomable: false
+            },
+            categoryField: "Region",
+            categoryAxis: {
+              gridPosition: "start",
+              gridAlpha: 0,
+              tickPosition: "start",
+              tickLength: 20
+            },
+
+            // Custom balloon appearance
+            balloon: {
+              borderThickness: 0,
+              fillAlpha: 1
+            }
+          });
+        }
+      });
+
+      // Create the line graph chart - load the data from external resource
+      AmCharts.loadFile(
+        "https://gavamedia.com/TEMP/lineChart.csv",
+        {},
+        function(response) {
+          // Parse CSV
+          var data = AmCharts.parseCSV(response, { useColumnNames: true });
+
+          // build chart when in window
+          const lineGraph = document.getElementById("lineGraphDiv");
+          var isBuilt = false;
+          function makeLineGraph() {
+            let showChart =
+              window.scrollY + window.innerHeight - lineGraph.clientHeight;
+            let isShown = showChart > lineGraph.offsetTop;
+            if (isShown && !isBuilt) {
+              createLineGraph();
+              isBuilt = true;
+              lineGraph.classList.remove("chart-loading");
+              lineGraph.classList.add("chart-loaded");
+            }
+          }
+          window.addEventListener("scroll", makeLineGraph);
+
+          function createLineGraph() {
+            var lineGraphChart = AmCharts.makeChart("lineGraphDiv", {
+              type: "serial",
+              addClassNames: true,
+              theme: "black",
+              // "titles": [{
+              // 	"text": "The correlation between the lack of electricity in healthcare facilities and maternal deaths",
+              // 	"size": 15
+              // }],
+              autoMargins: false,
+							color: "#ffffff",
+              marginLeft: 30,
+              marginRight: 8,
+              marginTop: 10,
+              marginBottom: 26,
+              balloon: {
+                adjustBorderColor: false,
+                horizontalPadding: 10,
+                verticalPadding: 8,
+                color: "#ffffff"
+              },
+              dataProvider: data,
+              valueAxes: [
+                {
+									color: "#ffffff",
+                  axisAlpha: 0,
+                  position: "left",
+                  logarithmic: true
+                },
+                {
+									color: "#ffffff",
+                  logarithmic: true
+                }
+              ],
+              startDuration: 1,
+              graphs: [
+                {
+                  balloonText:
+                    "<span style='font-size:12px;'>[[title]] in [[category]]:<br><span style='font-size:20px;'>[[value]]%</span> [[additional]]</span>",
+                  bullet: "round",
+                  lineThickness: 3,
+                  fillAlphas: 0,
+                  lineAlpha: 1,
+									lineColor: "#FF6B35",
+                  title: "% of Maternal Deaths per Women in Childbearing Years",
+                  valueField:
+                    "% of Maternal Deaths per Women in Childbearing Years"
+                },
+                {
+                  id: "graph2",
+                  balloonText:
+                    "<span style='font-size:12px;'>[[title]] in [[category]]:<br><span style='font-size:20px;'>[[value]]%</span> [[additional]]</span>",
+                  bullet: "round",
+                  lineThickness: 3,
+                  fillAlphas: 0,
+                  lineAlpha: 1,
+									lineColor: "#FFE17F",
+                  title: "% of Health Facilities With No Electricity",
+                  valueField: "% of All Health Facilities With No Electricity"
+                }
+              ],
+              categoryField: "Country",
+              categoryAxis: {
+                gridPosition: "start",
+                axisAlpha: 0,
+                tickLength: 0
+              },
+
+							legend: {
+                width: "100%",
+                marginRight: 27,
+                marginLeft: 27,
+                equalWidths: false,
+                backgroundAlpha: 0.5,
+                backgroundColor: "#FFFFFF",
+                borderColor: "#ffffff",
+								color: "#000000",
+                borderAlpha: 1,
+                top: 450,
+                left: 0,
+                horizontalGap: 10,
+                data: [
+                  {
+                    title: "% of Health Facilities With No Electricity",
+                    color: "#FFE17F"
+                  },
+                  {
+                    title: "% of Maternal Deaths per Women in Childbearing Years",
+                    color: "#FF6B35"
+                  }
+                ]
+              },
+
+              // Custom balloon appearance
+              balloon: {
+                borderThickness: 0,
+                fillAlpha: 1
+              }
+            });
+          }
+        }
+      );
+
+      /**
+       * Creates and positions custom markers (pie charts)
+       */
+      function updateCustomMarkers(event) {
+        // get map object
+        var map = event.chart;
+
+        // go through all of the images
+        for (var x = 0; x < map.dataProvider.images.length; x++) {
+          // get MapImage object
+          var image = map.dataProvider.images[x];
+
+          // Is it a Pie?
+          if (image.pie === undefined) continue;
+
+          // create id
+          if (image.id === undefined) image.id = "amcharts_pie_" + x;
+
+          // Add theme
+          if ("undefined" == typeof image.pie.theme)
+            image.pie.theme = map.theme;
+
+          // Make pies fill all the chart area
+          image.pie.autoMargins = false;
+          image.pie.radius = "30%";
+          image.width = 80;
+          image.height = 80;
+
+          // Click & hover events for each pie chart
+          image.pie.listeners = [
+            {
+              event: "clickSlice",
+              method: clickedPie
+            },
+            {
+              event: "rollOverSlice",
+              method: clickedPie
+            }
+          ];
+
+          // check if it has corresponding HTML element
+          if ("undefined" == typeof image.externalElement)
+            image.externalElement = createCustomMarker(image);
+
+          // reposition the element accoridng to coordinates
+          var xy = map.coordinatesToStageXY(image.longitude, image.latitude);
+          image.externalElement.style.top = xy.y + "px";
+          image.externalElement.style.left = xy.x + "px";
+          image.externalElement.style.marginTop =
+            Math.round(image.height / -2) + "px";
+          image.externalElement.style.marginLeft =
+            Math.round(image.width / -2) + "px";
+        }
+      }
+
+      /**
+       * Creates a custom map marker - a div for container and a
+       * pie chart in it
+       */
+      function createCustomMarker(image) {
+        // Create chart container
+        var holder = document.createElement("div");
+        holder.id = image.id;
+        holder.title = image.title;
+        holder.style.position = "absolute";
+        holder.style.width = image.width + "px";
+        holder.style.height = image.height + "px";
+
+        // Append the chart container to the map container
+        image.chart.chartDiv.appendChild(holder);
+
+        // Create a pie chart
+        var chart = AmCharts.makeChart(image.id, image.pie);
+
+        // Custom balloon popup
+        var balloon = chart.balloon;
+        balloon.borderThickness = 0;
+        balloon.fillAlpha = "0";
+
+
+        return holder;
+      }
+
+      function clickedPie(e) {
+        // Toggle showing or hiding barChartDiv and lineGraphDiv
+        // var	barChartDiv = document.getElementById("barChartDiv");
+        // var	lineGraphDiv = document.getElementById("lineGraphDiv");
+        //
+        // if (barChartDiv.style.display == "none") {
+        // 	barChartDiv.style.display = "inline-block";
+        // 	lineGraphDiv.style.display = "none";
+        // }
+        // else {
+        // 	barChartDiv.style.display = "none";
+        // 	lineGraphDiv.style.display = "inline-block";
+        // }
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  </body>
+</html>

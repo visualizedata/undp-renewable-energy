@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Renewable Energy and Good Governance in Africa</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/solid.css" integrity="sha384-aj0h5DVQ8jfwc8DA7JiM+Dysv7z+qYrFYZR+Qd/TwnmpDI6UaB3GJRRTdY8jYGS4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/fontawesome.css" integrity="sha384-WK8BzK0mpgOdhCxq86nInFqSWLzR5UAsNg0MGX9aDaIIrFWQ38dGdhwnNCAoXFxL" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+        
+        <!-- Google fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,300i" rel="stylesheet">
+
+
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+		<script src="js/energyChart.js"></script>
+    
+		<style>
+    		body {
+    			font-family: 'Alegreya Sans', sans-serif;
+    			font-size: 16px;
+    			color: #a8382d;
+    			cursor: default;
+    			background: #f7f3ea;
+    		}
+    		#charts {
+    		  text-align: center;
+    		}
+    		a:link {
+    		  color:#909294;
+    		}
+    		a:visited {
+    		  color:#bcbdbe;
+    		}
+    		a:hover {
+    		  color:#bc3f32;
+    		}
+    		.chartDiv {
+    		    display: inline-block;
+    		    margin-top: 10px;
+    		    text-align: center;
+    		}
+    		.dupChartWrapper {
+    		  display: block;
+    		  margin: 0 auto;
+    		}
+    		.navTitle {
+    		  display: none;
+    		}
+    		.showNavTitle .navTitle {
+    		  display: inline;
+    		}
+    		#visualization button {
+    		  margin-top: 3px;
+    		}
+    		.featureSort button i {
+    		  display: none;
+    		}
+    		.featureSort button.active {
+    		  background: #333;
+    		  color: #fff;
+    		}
+    		.featureSort button.active.asc i.asc {
+    		  display: inline-block;
+    		}
+    		
+    		.featureSort button.active.desc i.desc {
+    		  display: inline-block;
+    		}
+		</style>
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger navTitle" href="#page-top">Renewable Energy and Good Governance in Africa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#intro">Introduction</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#legend">Legend</a>
+            </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#group1">Group 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#group2">Group 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#visualization">Visualization</a>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="bg-dark text-white section">
+      <div class="container text-center">
+        <h1>Renewable Energy and Good Governance in Africa</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+
+    <section id="intro">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h1> Introduction </h1>
+            
+            <p>This data visualization envisions Africa's renewable energy potential and capacity through the lens of <strong></strong>SDG 16: Promote peaceful and inclusive societies for sustainable development, provide access to justice for all and build effective, accountable and inclusive institutions at all levels.<sup>1</sup></p>
+            
+            <p>Accountable institutions and good governance are prerequisites for building sustainable renewable energy infrastructure. History has shown how natural resource wealth, a promising means of building national economies and benefiting public good, is instead corruptly diverted by a select few in positions of power. The resource curse, also known as the paradox of plenty, refers to the paradox that countries with an abundance of natural resources tend to have less economic growth, less democracy, and worse development outcomes than countries with fewer natural resources.</p>
+            
+            <p>Africa's vast renewable energy potential holds many possibilities for helping countries realize the sustainable development goals, however, the successful implementation of renewable energy projects rests on the stability and support of local governing bodies.</p>
+            
+            <p>Visually pairing World Governance Indicators with renewable energy potential and capacity data, emerging pattern interplay leads to further lines of inquiry:</p>
+            <ul>
+            	<li>Do countries with weak World Governance Indicators and high renewable energy potential have a higher susceptability to the resource curse?
+            	<li>Are countries with strong World Governance Indicators and high renewable energy potential strong candidates for renewable energy pilot projects?
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="legend" style="background-color:#faf7f1">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div id="exampleChart" class="dupChartWrapper"></div>
+          </div>
+          <div class="col-md-6">
+            <h1>Legend</h1>
+            <p>Each country element of the visualization maps several data points:
+            <ul>
+              <li>Each of the six axes maps one dimension of the World Governance Indicators<sup>2</sup>, in units ranging from -2.5 to 2.5: Voice and Accountability, Political Stability, Government Effectiveness, Regulatory Quality, Rule of Law, and Control of Corruption </li>
+              <li>The yellow circle maps estimated renewable energy potential<sup>3</sup>, in terawatts</li>
+              <li>The yellow circle maps reported renewable energy installed capacity<sup>4</sup>, in megawatts</li>
+            </ul>
+            </p>
+
+            <p>Africa's renewable energy potential is vast (1 terawatt = 1,000,000 megawatts) - mapping this in comparison with installed capacity has visual limits. In order to visualize this relationship, the renewable energy potential area is scaled to be 4x the area of the installed capacity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="group1">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-12">
+            <strong>Group 1:</strong>
+            <h2>Sudan, Somalia, Democratic Republic of Congo</h2>
+            <div id="group1Charts"></div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 20px">
+          <div class="col-lg-8 mx-auto text-left">
+            <p>Sudan, Somalia, and Democratic Republic of Congo share relatively low World Governance Indicator scores and high renewable energy potential. Sudan and Congo have modest renewable energy capacity, while Somalia has none. Comparing the individual indicator axes, Somalia is weaker than Sudan and Democratic Republic of Congo in Rule of Law, Regulatory Quality and Government Effectiveness. In all three countries, Political Stability ranks very low. All three countries have a pronounced indicator "jaggedness" - scores across the six axes fluctuate and distort the resulting shape when the axes are connected.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="group2" style="background-color:#faf7f1">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-12">
+            <strong>Group 2:</strong>
+            <h2>South Africa, Namibia, Botswana</h2>
+            <div id="group2Charts"></div>
+          </div>
+          <div class="row" style="margin-top: 20px">
+            <div class="col-lg-8 mx-auto text-left">
+              <p> South Africa, Namibia, and Botswana all rank strongly across most of the World Governance Indicators and all have a relative indicator evenness. All three countries have fairly high renewable energy potential, but only South Africa has a meaningul installed renewable energy capacity. No immediate relationships are evident between the individual indicators and lack of renewable energy capacity in Namibia and Botswana, but these countries may prove to be strong candidates for renewable energy projects.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="visualization">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <div class="regionFilter text-center">
+              <button type="button" class="btn" data-region="regionALL">ALL</button>
+              <button type="button" class="btn" data-region="regionN">NORTH</button>
+              <button type="button" class="btn" data-region="regionC">CENTRAL</button>
+              <button type="button" class="btn" data-region="regionE">EAST</button>
+              <button type="button" class="btn" data-region="regionW">WEST</button>
+              <button type="button" class="btn" data-region="regionS">SOUTH</button>
+            </div>
+            <div class="featureSort text-center" style="margin-top: 1em;">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-feature="potential">Potential <i class="asc fas fa-arrow-up"></i><i class="desc fas fa-arrow-down"></i></button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-feature="capacity">Capacity <i class="asc fas fa-arrow-up"></i><i class="desc fas fa-arrow-down"></i></button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-feature="voice">Voice and Accountability <i class="asc fas fa-arrow-up"></i><i class="desc fas fa-arrow-down"></i></button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-feature="political">Political Stability <i class="asc fas fa-arrow-up"></i><i class="desc fas fa-arrow-down"></i></button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-feature="government">Government Effectiveness <i class="asc fas fa-arrow-up"></i><i class="desc fas fa-arrow-down"></i></button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-feature="regulatory">Regulatory Quality <i class="asc fas fa-arrow-up"></i><i class="desc fas fa-arrow-down"></i></button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-feature="rule">Rule of Law <i class="asc fas fa-arrow-up"></i><i class="desc fas fa-arrow-down"></i></button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-feature="corruption">Control of Corruption <i class="asc fas fa-arrow-up"></i><i class="desc fas fa-arrow-down"></i></button>
+            </div>
+            <div id="charts"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <p class="m-0 text-center text-white">A data visualization project by Stephanie Yung, M.S. Data Visualization // Major Studio I 2018 // The New School</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-mg-12 mx-auto text-center">
+            <p style="font-size:75%">
+              <sup>1</sup><a href="https://sustainabledevelopment.un.org/sdg16">Sustainable Development Goal 16</a>
+              <sup>2</sup><a href="http://info.worldbank.org/governance/wgi/#home">World Governance Indicators</a>
+              <sup>3</sup><a href="https://www.irena.org/publications/2014/Aug/Estimating-the-Renewable-Energy-Potential-in-Africa-A-GIS-based-approach">IRENA: Estimating Renwable Energy Potential in Africa, August 2014</a>
+              <sup>4</sup><a href="https://www.irena.org/publications/2018/Mar/Renewable-Capacity-Statistics-2018">IRENA: Renewable Capacity Statistics, March 2018</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+    <script>
+      jQuery(function($) { // jQuery domready
+        /* global d3 */
+    		/* global energyChart */
+    		
+    		
+        // function resizeSections() {
+        //   // set heights for sections
+        //   $('section, .section').css('min-height', $(window).height() + 'px')
+          
+        //   // adjust height of header section text to be in the middle.
+        //   $('header.section h1').css('margin-top', $('header.section').height() * 0.4);
+        // }
+        // resizeSections()
+        
+        
+    		$(window).on('scroll', function() {
+    		  if ($(window).scrollTop() > 120) {
+    		    $('body').addClass('showNavTitle');
+    		  } else {
+    		    $('body').removeClass('showNavTitle');
+    		  }
+    		});
+    		
+    		// empty array collectors for later sections
+    		var group1 = [];
+    		var group2 = [];
+
+        d3.csv("wgi_irena_ssa.csv").then((data) => {
+          let chartsEl = document.getElementById('charts');
+          let chartsG1 = document.getElementById('group1Charts');
+          let chartsG2 = document.getElementById('group2Charts');
+          data.forEach((d, idx) => {
+            // if (idx === 0) return; // ignore the first example country
+            
+            let rowData = {
+              code: d['Code'],
+              country: d['Country'],
+              region: d['REGION'],
+              radar: [[
+                {axis:"Voice and Accountability",value:d["voiceAcc"]},
+                {axis:"Political Stability",value:d["politicalSta"]},
+                {axis:"Government Effectiveness",value:d["govEff"]},
+                {axis:"Regulatory Quality",value:d["regQua"]},
+                {axis:"Rule of Law",value:d["ruleLaw"]},
+                {axis:"Control of Corruption",value:d["controlCor"]},
+              ]],
+              circle: {
+                potential: d["potential"],
+                capacity: d["Capacity"]
+              },
+              sort: {
+                potential: d["potential"],
+                capacity: d["Capacity"],
+                voice: d["voiceAcc"],
+                political: d["politicalSta"],
+                government: d["govEff"],
+                regulatory: d["regQua"],
+                rule: d["ruleLaw"],
+                corruption: d["controlCor"],
+
+              }
+            }
+            
+            // group 1 low governance
+            if (['SDN', 'ZAR', 'SOM'].includes(d['Code'])) {
+              chartsG1.appendChild(energyChart(rowData));
+            }
+            
+            // group 2 high governance
+            if (['ZAF', 'NAM', 'BWA'].includes(d['Code'])) {
+              chartsG2.appendChild(energyChart(rowData));
+            }
+            
+            chartsEl.appendChild(energyChart(rowData));
+          });
+          
+          
+          // Moving example chart to example section
+          let exampleChart = $('.energyZZZ');
+          exampleChart.find('.countryName').remove(); // remove Country label from example chart
+          exampleChart.attr('style', "transform-origin: left top; transform: scale(2);");
+          $('#exampleChart')
+            .width(exampleChart.width()*2)
+            .height(exampleChart.height()*2)
+            .append(exampleChart);
+        });
+        
+        // behavior for region filter buttons.
+        $('.regionFilter button').click(function() {
+          $('.regionFilter button').removeClass('btn-dark');
+          $(this).addClass('btn-dark');
+          
+          $('#visualization .chartDiv').css('display', 'none');
+          $('#visualization .'+$(this).data('region')).css('display', 'inline-block');
+        });
+        $('.regionFilter button').first().click();
+        
+        
+        // sorting buttons
+        $('.featureSort button').click(function() {
+          $('.featureSort button').removeClass('active');
+          let $this = $(this);
+          
+          // what feature to sort the list by
+          let sortBy = $this.data('feature');
+          
+          // this will be -1 or 1 multiplier to reverse the custom sort function
+          let sortDir; 
+          
+          // toggle the sort direction with class names
+          if ($this.hasClass('asc')) {
+            sortDir = -1;
+            $this.removeClass('asc').addClass('desc');
+          } else {
+            sortDir = 1;
+            $this.removeClass('desc').addClass('asc');
+          }
+          $this.addClass('active');
+          
+          let charts = $('#charts .chartDiv');
+          charts.sort((a, b) => {
+            // getting data from elements
+            let aData = $(a).data('sort');
+            let bData = $(b).data('sort');
+            
+            // using Number() to case values as numbers instead of strings
+            if (Number(aData[sortBy]) < Number(bData[sortBy])) {
+              return sortDir * -1;
+            } else if (Number(aData[sortBy]) > Number(bData[sortBy])) {
+              return sortDir * 1;
+            } else {
+              return 0;
+            }
+          })
+          charts.each((idx, chart) => {
+            $('#charts').append(chart);
+          });
+        });
+      })
+    </script>
+  </body>
+
+</html>

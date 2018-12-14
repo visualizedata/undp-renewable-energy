@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <title>Nigerian Women's Health and Access to Electricity</title>
+    
+    <!-- utils -->
+		<script type="text/javascript" src="libs/lodash.min.js"></script>
+		<script type="text/javascript" src="libs/d3.v4.min.js"></script>
+		<script type="text/javascript" src="libs/d3-queue.v3.min.js"></script>
+		<script type="text/javascript" src="libs/jquery.min.js"></script>
+<!--
+		<script type="text/javascript" src="libs/jquery.mobile.min.js"></script>
+-->
+
+		
+    <!-- bootstrap -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="libs/bootstrap.min.js"></script>
+
+    <!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
+
+		<!-- fullPage -->
+		<link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="css/examples.css" />
+    <script type="text/javascript" src="libs/fullpage.min.js"></script>
+  
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+
+  <body>
+		  
+			<div id="fullpage"> <!-- Page Sections -->
+				
+<!--
+				<div class="section " id="section0">
+					<video id="myVideo" muted loop data-autoplay>
+						<source src="img/pylon.mp4" type="video/mp4">
+					</video>
+					
+					<div class="layer">
+						<div id='title-back'>
+							<h1>Gender of<br>Electricity</h1>
+						</div>
+					</div>
+				</div>
+-->
+
+<!--
+			  <div class="section color-text" id="section2" style='background: url("img/background.svg") left -450% bottom 15% / 90% no-repeat'>
+-->
+			  <div class="section color-text" id="section2">
+					<div id='bulb'><img src="img/bulb.png"></div>
+	        <div class="slide">
+						<h2>What are the <b>risks</b> to women in Nigeria<br>&nbsp;&nbsp;&nbsp;&nbsp;when <b>access</b> to clean energy is limited?</p></h2>
+					</div>
+				</div>
+			
+				<!-- Visualization Dashboard -->
+<!--
+				<div class="section">		
+					<div style="padding: 20px 45px 20px 20px;">
+
+						<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+						  <li class="nav-item active">
+						    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#disease" role="tab" aria-controls="disease" aria-selected="false">Risk of Disease</a>
+						  </li>
+						  <li class="nav-item">
+						    <a class="nav-link" id="home-tab" data-toggle="tab" href="#dnut" role="tab" aria-controls="dnut" aria-selected="true">Access to Clean Fuel</a>
+						  </li>
+						</ul>
+	
+						<div class="tab-content" id="myTabContent">
+						  <div class="tab-pane fade in" id="dnut" role="tabpanel" aria-labelledby="home-tab">
+							  <div class="container-fluid">
+								  <div class="row">
+								    
+								    <div class="col-sm-2" style="overflow-y: auto; height: 80vh;">
+											<ul class="nav nav-pills nav-stacked" id="dnut-pills"></ul>
+								    </div>
+								    	
+										<div class="tab-content" id="access-content" ></div>
+					 
+								  </div>
+								</div>
+						  </div>
+	  
+						  <div class="tab-pane fade in active" id="disease" role="tabpanel" aria-labelledby="profile-tab">
+								
+						  </div>
+						  
+						</div>
+					</div>
+				</div>
+-->
+		    
+					
+<!--
+		    <div class="section" id='horiz0'>
+	        <div id=vis0 class="slide"></div>
+	        <div id=vis1 class="slide"></div>
+	        <div id=vis2 class="slide"></div>
+	        <div id=vis3 class="slide"></div>
+	        <div id=vis4 class="slide"></div>
+		    </div>	
+			
+		    <div class="section">
+	        <div id=vis5 class="slide"></div>
+		    </div>
+-->
+		    
+		    <div class="section color-text" id="section1">
+	        <div class="slide">
+					
+						<p>Dirty fuel for lighting and cooking is common in Nigeria.<sup>[4]</sup>  As a result the nation's underserved communities have an <b>increased likelihood of many respiratory diseases</b>.</p>
+						<br>
+						<p>In particular, since cooking is still largely a gendered task, <b>women and their children are subjected to a greater burden of disease</b> when existing infrastructure provides no alternatives.</p>
+						<br>
+<!--
+						<p>A better understanding may be possible of women's choice for <b>cleaner, and safer fuel options</b> by factoring in their health, education, and access to public infrastructure.</p>
+						<br>
+-->
+						<p>The UNDP has taken this opprotunity to lead several groundbreaking initiatives<sup>[3]</sup> that will both support sustainable development goals and, once and for all, <b>address the gender delineated inequities</b> that are a hallmark of dirty fuel. </p>
+						</div>
+				</div>
+	      
+		    <div class="section"  id="sources">
+	        <div class="slide">
+            <h1>Sources</h1>
+						<p>[1] Rodríguez de la Vega A, Casacó A, García M, Noa M, Carvajal D, Arruzazabala L, González R. Kerosene-induced asthma. Ann Allergy. 1990 Apr;64(4):362-3. PubMed PMID: 2321811.</p>
+						<br>
+						<p>[2] "Household Air Pollution and Health." World Health Organization. Accessed 2018. <a href="http://www.who.int/en/news-room/fact-sheets/detail/household-air-pollution-and-health">Source Link</a>.</p>
+						<br>
+						<p>[3] "UN WomenWatch." UNDP. Accessed 2018. <a href="http://www.un.org/womenwatch/feature/climate_change/factsheet.html#health">Source Link</a> .</p>
+						<br>
+						<p>[4] "Nigeria DHS 2013" IFC International. Accessed 2018. <a href="https://dhsprogram.com/pubs/pdf/fr293/fr293.pdf">Source Link</a></p>
+						<br>
+						<p>"Global Burden of Disease Study 2016 (GBD 2016)." Global Burden of Disease Study 2016 (GBD 2016) Causes of Death and Nonfatal Causes Mapped to ICD Codes, 2016. Accessed November 1, 2018. <a href="http://ghdx.healthdata.org/record/global-burden-disease-study-2016-gbd-2016-causes-death-and-nonfatal-causes-mapped-icd-codes">Source Link</a>.</p>
+						<br>
+						<p>"Nigeria - General Household Survey, Panel 2015-2016, Wave 3." NGA_2015_GHSP-W3_v01_M, December 12, 2016. Accessed 2018. <a href="http://microdata.worldbank.org/index.php/catalog/2734">Source Link</a>.</p>
+	        </div>
+	      </div>	  
+	          
+		</div>
+		
+  </body>
+  
+  <!-- local -->
+	<script type="text/javascript" src="js/util.js"></script>
+	<script type="text/javascript" src="js/html.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/nigeriaData.js"></script>
+	<script type="text/javascript" src="js/graph.js"></script>
+	
+</html>
